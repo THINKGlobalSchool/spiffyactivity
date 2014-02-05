@@ -18,7 +18,7 @@
 }
 
 .elgg-list-river {
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 .elgg-list-river > li {

@@ -37,6 +37,10 @@ function spiffyactivity_init() {
 	elgg_register_js('elgg.spiffyactivity', $js);
 
 	elgg_register_page_handler('spiffy', 'spiffyactivity_page_handler');
+
+	elgg_load_js('jquery.isotope');
+	elgg_load_js('jquery.infinitescroll');
+	elgg_load_js('elgg.spiffyactivity');
 }
 
 function spiffyactivity_page_handler($page) {
