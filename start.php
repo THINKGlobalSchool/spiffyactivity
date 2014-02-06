@@ -41,10 +41,13 @@ function spiffyactivity_init() {
 	elgg_load_js('jquery.isotope');
 	elgg_load_js('jquery.infinitescroll');
 	elgg_load_js('elgg.spiffyactivity');
+
+	if (get_input('context') == 'activity') {
+		elgg_set_viewtype('spiffy');
+	}
 }
 
 function spiffyactivity_page_handler($page) {
-
 	$options = array(
 		'type' => 'object',
 		'subtypes' => array(

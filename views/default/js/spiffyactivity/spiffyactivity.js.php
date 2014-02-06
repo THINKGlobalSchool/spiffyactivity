@@ -13,53 +13,71 @@
 //<script>
 elgg.provide('elgg.spiffyactivity');
 
-// elgg.spiffyactivity.init = function() {
-// 	// $('.elgg-river').parent().append('<div class="elgg-ajax-loader"></div>');
+// modified Isotope methods for gutters in masonry
+$.Isotope.prototype._getMasonryGutterColumns = function() {
+    var gutter = this.options.masonry && this.options.masonry.gutterWidth || 0;
+        containerWidth = this.element.width();
 
-// 	var $container = $('.elgg-list-river');
+    this.masonry.columnWidth = this.options.masonry && this.options.masonry.columnWidth ||
+                  // or use the size of the first item
+                  this.$filteredAtoms.outerWidth(true) ||
+                  // if there's no items, use size of container
+                  containerWidth;
 
-// 	$container.isotope({
-//       // options
-//       itemSelector : '.elgg-item',
-//       layoutMode : 'masonry',
-//       masonry: {
-//           width: 100
-//       }
-// 	});
+    this.masonry.columnWidth += gutter;
 
-// 	$container.infinitescroll({
-//         navSelector  : '.elgg-pagination',    // selector for the paged navigation 
-//         nextSelector : '.elgg-pagination li:last-child a',  // selector for the NEXT link (to page 2)
-//         itemSelector : '.elgg-item',     // selector for all items you'll retrieve
-//         loading: {
-//             finishedMsg: 'No more pages to load.',
-//             img: 'http://i.imgur.com/qkKy8.gif'
-//           }
-//         },
-//         // call Isotope as a callback
-//         function( newElements ) {
-//           $container.isotope( 'appended', $( newElements ) ); 
-//         }
-//       );
+    this.masonry.cols = Math.floor( ( containerWidth + gutter ) / this.masonry.columnWidth );
+    this.masonry.cols = Math.max( this.masonry.cols, 1 );
+};
 
-// 	$('.elgg-list-river').css({'visibility': 'visible'});
-// }
+$.Isotope.prototype._masonryReset = function() {
+    // layout-specific props
+    this.masonry = {};
+    // FIXME shouldn't have to call this again
+    this._getMasonryGutterColumns();
+    var i = this.masonry.cols;
+    this.masonry.colYs = [];
+    while (i--) {
+        this.masonry.colYs.push( 0 );
+    }
+};
+
+$.Isotope.prototype._masonryResizeChanged = function() {
+    var prevSegments = this.masonry.cols;
+    // update cols/rows
+    this._getMasonryGutterColumns();
+    // return if updated cols/rows is not equal to previous
+    return ( this.masonry.cols !== prevSegments );
+};
 
 elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
-    var $container = $('.elgg-list-river');
+    var $container = $('.spiffyactivity-list');
 
+   
     if ($container.data('isIsotope')) {
-        $container.isotope('destroy');  
+        $container.isotope('destroy'); 
+    } else {
+        // First init of isotope, hide the items initally for fancy fade in
+        var $hidden_container = $('<div/>', {
+            style: 'display: none',
+        }).appendTo($container.parent());
+
+        $container.find('li.spiffyactivity-list-item').appendTo($hidden_container);
     }
     
     $container.isotope({
         // options
-        itemSelector : '.elgg-item',
+        itemSelector : '.spiffyactivity-list-item',
         layoutMode : 'masonry',
         masonry: {
-            width: 100
+            width: 100,
+            gutterWidth: 10
         }
     });
+
+    if (!$container.data('isIsotope')) {
+        $container.isotope('insert', $hidden_container.find('li.spiffyactivity-list-item')); 
+    }
 
     $container.data('isIsotope', true);
 }
@@ -71,3 +89,6 @@ elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
 //elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);
 elgg.register_hook_handler('content_loaded', 'filtrate', elgg.spiffyactivity.filtrate_init);
 elgg.register_hook_handler('infinite_loaded', 'filtrate', elgg.spiffyactivity.filtrate_infinite);
+
+
+
