@@ -5,7 +5,7 @@
  * @package SpiffyActivity
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2013
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
@@ -14,9 +14,15 @@ elgg_register_event_handler('init', 'system', 'spiffyactivity_init');
 
 // Init wall posts
 function spiffyactivity_init() {
+
 	// Register library
-	// elgg_register_library('elgg:searchimproved', elgg_get_plugins_path() . 'searchimproved/lib/searchimproved.php');
-	//elgg_load_library('elgg:searchimproved');
+	elgg_register_library('elgg:spiffyactivity', elgg_get_plugins_path() . 'spiffyactivity/lib/spiffyactivity.php');
+	elgg_load_library('elgg:spiffyactivity');
+
+	// Register fb link preview library
+	elgg_register_library('facebook-link-preview', elgg_get_plugins_path() . 'spiffyactivity/vendors/fblinkpreview/php/classes/LinkPreview.php');
+
+	///
 
 	// Extend main CSS
 	elgg_extend_view('css/elgg', 'css/spiffyactivity/css');
@@ -25,6 +31,11 @@ function spiffyactivity_init() {
 	$js = elgg_get_simplecache_url('js', 'isotope.js');
 	elgg_register_simplecache_view('js/isotope.js');
 	elgg_register_js('jquery.isotope', $js);
+
+	// Register timeago lib
+	$js = elgg_get_simplecache_url('js', 'timeago.js');
+	elgg_register_simplecache_view('js/timeago.js');
+	elgg_register_js('jquery.timeago', $js);
 
 	// Register Infinite Scroll Lib
 	$js = elgg_get_simplecache_url('js', 'infinitescroll.js');
@@ -40,11 +51,15 @@ function spiffyactivity_init() {
 
 	elgg_load_js('jquery.isotope');
 	elgg_load_js('jquery.infinitescroll');
+	elgg_load_js('jquery.timeago');
 	elgg_load_js('elgg.spiffyactivity');
 
 	if (get_input('context') == 'activity') {
 		elgg_set_viewtype('spiffy');
+		elgg_register_plugin_hook_handler('view', 'river/elements/layout', 'spiffyactivity_river_layout_view_handler');
 	}
+
+	//elgg_dump(spiffyactivity_get_external_link_preview_components('https://spot.thinkglobalschool.com'));
 }
 
 function spiffyactivity_page_handler($page) {
@@ -91,4 +106,25 @@ function spiffyactivity_page_handler($page) {
 		echo elgg_view_page($params['title'], $body);
 	}
 	return TRUE;
+}
+
+/**
+ * Force river layout output to spiffy viewtype
+ *
+ * @param string $hook
+ * @param string $type
+ * @param array  $value
+ * @param array  $params
+ * @return array
+ */
+function spiffyactivity_river_layout_view_handler($hook, $type, $value, $params) {
+	if (!get_input('spiffy_hook')) {
+		set_input('spiffy_hook', true);
+		return elgg_view('river/elements/layout', $params['vars'], false, false, 'spiffy');
+	} else {
+		set_input('spiffy_hook', false);
+		return $value;
+	}
+		
+
 }

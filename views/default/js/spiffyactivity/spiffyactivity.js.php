@@ -5,7 +5,7 @@
  * @package SpiffyActivity
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2013
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
@@ -65,25 +65,34 @@ elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
         $container.find('li.spiffyactivity-list-item').appendTo($hidden_container);
     }
     
-    $container.isotope({
-        // options
-        itemSelector : '.spiffyactivity-list-item',
-        layoutMode : 'masonry',
-        masonry: {
-            width: 100,
-            gutterWidth: 10
-        }
+    $container.imagesLoaded(function(){
+        $container.isotope({
+            // options
+            itemSelector : '.spiffyactivity-list-item',
+            layoutMode : 'masonry',
+            masonry: {
+                width: 100,
+                gutterWidth: 10
+            }
+        });
     });
 
     if (!$container.data('isIsotope')) {
-        $container.isotope('insert', $hidden_container.find('li.spiffyactivity-list-item')); 
+        $container.imagesLoaded(function(){
+            $container.isotope('insert', $hidden_container.find('li.spiffyactivity-list-item')); 
+        });
     }
 
     $container.data('isIsotope', true);
+
+    $container.find('.spiffyactivity-header-posted > acronym').timeago();
 }
 
 elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
-    params.container.isotope('appended', params.items);
+    $('.spiffyactivity-list').imagesLoaded(function(){
+        params.container.isotope('appended', params.items);
+    });
+    $('.spiffyactivity-list').find('.spiffyactivity-header-posted > acronym').timeago();
 }
 
 //elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);

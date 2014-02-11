@@ -5,21 +5,76 @@
  * @package SpiffyActivity
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2013
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
 ?>
 .spiffyactivity-list-item {
-	border: 2px solid #DDDDDD;
-	max-width: 316px;
-	margin-bottom: 10px;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0 1px 1px #999999;
+    margin-bottom: 10px;
+    width: 316px;
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
 .spiffyactivity-list-item .elgg-menu-river,
 .spiffyactivity-list-item .river-access-display {
 	display: none;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header {
+
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header .spiffyactivity-header-name {
+	color: #444444;
+	display: block;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header .spiffyactivity-header-posted {
+	display: block;
+	font-style: normal;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header .elgg-body {
+	padding-left: 10px;
+	padding-right: 5px;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header.elgg-image-block {
+	margin: 0;
+	padding: 5px;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header.elgg-image-block .elgg-image {
+	margin: 0;
+	padding: 0;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-header .elgg-image .elgg-avatar img {
+	border-radius: 30px;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-body {
+	padding: 5px;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	width: 100%;
+	margin-bottom: 3px;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-image img {
+	width: 100%;
+}
+
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-attachment-url {
+	font-style: normal;
 }
 
 .spiffyactivity-list {
@@ -33,6 +88,7 @@
     height: 50px;
     width: 50px;
 }
+
 
 /* River tweaks */
 .elgg-river-item {
