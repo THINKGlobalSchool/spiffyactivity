@@ -79,6 +79,10 @@
 	display: block;
 }
 
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-list-item-horizontal .elgg-image {
+	max-width: 35%;
+}
+
 .spiffyactivity-list {
 	margin-top: 6px;
 	margin-left: 1px;
