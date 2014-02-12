@@ -36,7 +36,7 @@ if (!$object->preview_populated) {
 	$object->preview_populated = true;
 }
 
-$attachments = elgg_view('output/url', 
+$message = elgg_view('output/url', 
 	array(
 		'href' => $object->address,
 		'text' => "<span class='elgg-subtext spiffyactivity-attachment-url'>" . elgg_get_excerpt($object->address, 44) . "</span>"
@@ -48,17 +48,18 @@ $attachments = elgg_view('output/url',
 
 if ($object->preview_image) {
 	$image = elgg_view('output/img', array('src' => $object->preview_image), false, false, 'default');
-	$attachments .= "<div class='spiffyactivity-item-image'>$image</div>";
+	$attachments = "<div class='spiffyactivity-item-image'>$image</div>";
 }
 
 if (!$object->description && $object->preview_description) {
-	$message = $object->preview_description;
+	$message .= $object->preview_description;
 } else {
-	$message = $object->description;
+	$message .= $object->description;
 }
 
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
 	'message' => $message,
 	'attachments' => $attachments,
+	'layout' => 'horizontal'
 )); 

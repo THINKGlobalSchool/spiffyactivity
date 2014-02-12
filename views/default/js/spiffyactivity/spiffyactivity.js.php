@@ -52,14 +52,14 @@ $.Isotope.prototype._masonryResizeChanged = function() {
 
 elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
     var $container = $('.spiffyactivity-list');
-
    
     if ($container.data('isIsotope')) {
         $container.isotope('destroy'); 
     } else {
         // First init of isotope, hide the items initally for fancy fade in
         var $hidden_container = $('<div/>', {
-            style: 'display: none',
+            css: {opacity: 0},
+            id: 'iso-hidden'
         }).appendTo($container.parent());
 
         $container.find('li.spiffyactivity-list-item').appendTo($hidden_container);
@@ -78,7 +78,7 @@ elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
     });
 
     if (!$container.data('isIsotope')) {
-        $container.imagesLoaded(function(){
+        $hidden_container.imagesLoaded(function(){
             $container.isotope('insert', $hidden_container.find('li.spiffyactivity-list-item')); 
         });
     }
@@ -89,8 +89,10 @@ elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
 }
 
 elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
-    $('.spiffyactivity-list').imagesLoaded(function(){
-        params.container.isotope('appended', params.items);
+    params.items.appendTo($('#iso-hidden'));
+    params.items.imagesLoaded(function(){
+        $('#iso-hidden').find('li.spiffyactivity-list-item').animate({opacity: 1});
+        params.container.isotope('appended', $('#iso-hidden').find('li.spiffyactivity-list-item').appendTo('.spiffyactivity-list'));
     });
     $('.spiffyactivity-list').find('.spiffyactivity-header-posted > acronym').timeago();
 }

@@ -55,7 +55,7 @@
 }
 
 .spiffyactivity-list-item .spiffyactivity-list-item-header .elgg-image .elgg-avatar img {
-	border-radius: 30px;
+	/*border-radius: 30px;*/
 }
 
 .spiffyactivity-list-item .spiffyactivity-list-item-body {
@@ -75,6 +75,8 @@
 
 .spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-attachment-url {
 	font-style: normal;
+	margin-bottom: 3px;
+	display: block;
 }
 
 .spiffyactivity-list {
