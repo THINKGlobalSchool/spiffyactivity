@@ -1,8 +1,13 @@
 <?php
 /**
- * New bookmarks river entry
+ * Spiffy Activity Bookmarks River Create
  *
- * @package Bookmarks
+ * @package SpiffyActivity
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Jeff Tilson
+ * @copyright THINK Global School 2010 - 2014
+ * @link http://www.thinkglobalschool.com/
+ *
  */
 
 $object = $vars['item']->getObjectEntity();
@@ -36,7 +41,7 @@ if (!$object->preview_populated) {
 	$object->preview_populated = true;
 }
 
-$message = elgg_view('output/url', 
+$subtitle = elgg_view('output/url', 
 	array(
 		'href' => $object->address,
 		'text' => "<span class='elgg-subtext spiffyactivity-attachment-url'>" . elgg_get_excerpt($object->address, 44) . "</span>"
@@ -52,13 +57,14 @@ if ($object->preview_image) {
 }
 
 if (!$object->description && $object->preview_description) {
-	$message .= $object->preview_description;
+	$message = $object->preview_description;
 } else {
-	$message .= $object->description;
+	$message = $object->description;
 }
 
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
+	'subtitle' => $subtitle,
 	'message' => $message,
 	'attachments' => $attachments,
 	'layout' => 'horizontal'

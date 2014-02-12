@@ -11,7 +11,7 @@
  */
 
 $english = array(
-	
+	'spiffyactivity:download' => 'Download',
 );
 
 add_translation('en', $english);

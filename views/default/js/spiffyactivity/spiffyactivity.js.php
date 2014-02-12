@@ -86,6 +86,7 @@ elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
     $container.data('isIsotope', true);
 
     $container.find('.spiffyactivity-header-posted > acronym').timeago();
+    elgg.spiffyactivity.initPlugins();
 }
 
 elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
@@ -95,6 +96,16 @@ elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
         params.container.isotope('appended', $('#iso-hidden').find('li.spiffyactivity-list-item').appendTo('.spiffyactivity-list'));
     });
     $('.spiffyactivity-list').find('.spiffyactivity-header-posted > acronym').timeago();
+
+    elgg.spiffyactivity.initPlugins();
+}
+
+elgg.spiffyactivity.initPlugins = function() {
+    if (elgg.simplekaltura_utility != undefined) {
+        elgg.simplekaltura_utility.lightbox_init();
+    }
+
+    $(".elgg-lightbox").fancybox();
 }
 
 //elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);

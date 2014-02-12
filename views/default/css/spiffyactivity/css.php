@@ -69,6 +69,14 @@
 	margin-bottom: 3px;
 }
 
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-message {
+	box-shadow: 0 0 4px #DDDDDD inset;
+	color: #555555;
+	font-weight: bold;
+	margin-top: 6px;
+	padding: 6px 10px 10px;
+}
+
 .spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-image img {
 	width: 100%;
 }
@@ -81,6 +89,7 @@
 
 .spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-list-item-horizontal .elgg-image {
 	max-width: 35%;
+	margin: 2px 6px 0 0;
 }
 
 .spiffyactivity-list {

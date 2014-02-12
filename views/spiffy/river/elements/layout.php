@@ -82,6 +82,11 @@ if ($title !== false) {
 	$title = "<div class=\"spiffyactivity-item-title\">$title</div>";
 }
 
+$subtitle = elgg_extract('subtitle', $vars, false);
+if ($subtitle !== false) {
+	$subtitle = "<div class=\"spiffyactivity-item-subtitle\">$subtitle</div>";
+}
+
 $message = elgg_extract('message', $vars, false);
 if ($message !== false) {
 	$message = "<div class=\"spiffyactivity-item-message\">$message</div>";
@@ -101,11 +106,11 @@ if ($responses) {
 if ($layout != 'vertical') {
 	$body = elgg_view('page/components/image_block', array(
 		'image' => $attachments,
-		'body' => $title . $message,
+		'body' => $title . $subtitle,
 		'class' => 'spiffyactivity-list-item-horizontal',
 	));
 } else {
-	$body = $title . $attachments . $message;
+	$body = $title . $subtitle . $attachments;
 }
 
 echo <<<HTML
@@ -113,6 +118,7 @@ echo <<<HTML
 	<div class='spiffyactivity-list-item-body'>
 		$menu
 		$body
+		$message
 		$responses
 	</div>
 HTML;
