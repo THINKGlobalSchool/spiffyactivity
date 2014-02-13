@@ -72,10 +72,14 @@ $menu = elgg_view_menu('river', array(
 
 $title = elgg_extract('title', $vars, '');
 if ($title == '') {
-	$title = elgg_view('output/url', array(
-		'text' => $object->title,
-		'href' => $object->getURL()
-	));
+	$entity_title = $object->title ? $object->title : $object->name;
+
+	if ($entity_title) {
+		$title = elgg_view('output/url', array(
+			'text' => $entity_title,
+			'href' => $object->getURL()
+		));
+	}
 }
 
 if ($title !== false) {
@@ -88,7 +92,7 @@ if ($subtitle !== false) {
 }
 
 $message = elgg_extract('message', $vars, false);
-if ($message !== false) {
+if ($message !== false && !empty($message)) {
 	$message = "<div class=\"spiffyactivity-item-message\">$message</div>";
 }
 

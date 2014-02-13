@@ -81,6 +81,12 @@
 	width: 100%;
 }
 
+.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-group-image img {
+	background-size: 100px 100px !important;
+	height: 100px;
+	width: 100px;
+}
+
 .spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-attachment-url {
 	font-style: normal;
 	margin-bottom: 3px;
