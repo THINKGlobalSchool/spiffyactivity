@@ -45,66 +45,18 @@ function spiffyactivity_init() {
 	elgg_register_simplecache_view('js/spiffyactivity/spiffyactivity.js');
 	elgg_register_js('elgg.spiffyactivity', $js);
 
-	elgg_register_page_handler('spiffy', 'spiffyactivity_page_handler');
-
 	elgg_load_js('jquery.isotope');
 	elgg_load_js('jquery.infinitescroll');
 	elgg_load_js('jquery.timeago');
 	elgg_load_js('elgg.spiffyactivity');
 
-	if (get_input('context') == 'activity') {
+	if (get_input('context') == 'activity' && get_input('spiffy')) {
 		elgg_set_viewtype('spiffy');
 
 		elgg_register_plugin_hook_handler('get_options', 'activity_list', 'spiffyactivity_river_activity_list_handler');
 
 		elgg_register_plugin_hook_handler('view', 'river/elements/layout', 'spiffyactivity_river_layout_view_handler');
 	}
-}
-
-function spiffyactivity_page_handler($page) {
-	$options = array(
-		'type' => 'object',
-		'subtypes' => array(
-			'blog', 'simplekaltura_video', 'webvideo', 'podcast', 'bookmarks'
-		),
-		'action_type' => 'create',
-		'base_url' => elgg_get_site_url() . 'spiffy/infinitelist'
-	);
-
-	if (elgg_is_xhr()) {
-		$page_type = $page[0];
-
-		switch ($page_type) {
-			case 'infinitelist':
-				$options['count'] = true;
-
-				$item_count = elgg_get_river($options);
-
-				$options['count'] = false;
-
-				echo elgg_list_river($options);
-
-				$options = array(
-					'base_url' => elgg_get_site_url() . 'spiffy/infinitelist',
-					'limit' => 20,
-					'offset' => get_input('offset', 0),
-					'count' => $item_count
-				);
-
-				echo elgg_view('navigation/pagination', $options);
-				break; 
-		}
-	} else {
-		elgg_load_js('jquery.isotope');
-		elgg_load_js('jquery.infinitescroll');
-		elgg_load_js('elgg.spiffyactivity');
-
-		$params['content'] = elgg_list_river($options);
-
-		$body = elgg_view_layout('one_column', $params);
-		echo elgg_view_page($params['title'], $body);
-	}
-	return TRUE;
 }
 
 /**
