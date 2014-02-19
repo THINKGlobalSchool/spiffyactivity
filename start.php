@@ -50,7 +50,7 @@ function spiffyactivity_init() {
 	elgg_load_js('jquery.timeago');
 	elgg_load_js('elgg.spiffyactivity');
 
-	if (get_input('context') == 'activity' && get_input('spiffy')) {
+	if (get_input('page_context') == 'activity' && get_input('spiffy')) {
 		elgg_set_viewtype('spiffy');
 
 		elgg_register_plugin_hook_handler('get_options', 'activity_list', 'spiffyactivity_river_activity_list_handler');
