@@ -52,6 +52,10 @@ $.Isotope.prototype._masonryResizeChanged = function() {
 
 elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
     var $container = $('.spiffyactivity-list');
+
+    if ($container.length == 0) {
+        return;
+    } 
    
     if ($container.data('isIsotope')) {
         $container.isotope('destroy'); 
@@ -90,12 +94,16 @@ elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
 }
 
 elgg.spiffyactivity.filtrate_infinite = function(hook, type, params, value) {
+    if ($('.spiffyactivity-list').length == 0) {
+        return;
+    }
+
     params.items.appendTo($('#iso-hidden'));
     params.items.imagesLoaded(function(){
         $('#iso-hidden').find('li.spiffyactivity-list-item').animate({opacity: 1});
         params.container.isotope('appended', $('#iso-hidden').find('li.spiffyactivity-list-item').appendTo('.spiffyactivity-list'));
+        $('.spiffyactivity-list').find('.spiffyactivity-header-posted > acronym').timeago();
     });
-    $('.spiffyactivity-list').find('.spiffyactivity-header-posted > acronym').timeago();
 
     elgg.spiffyactivity.initPlugins();
 }

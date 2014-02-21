@@ -30,11 +30,6 @@ function spiffyactivity_init() {
 	elgg_register_simplecache_view('js/isotope.js');
 	elgg_register_js('jquery.isotope', $js);
 
-	// Register timeago lib
-	$js = elgg_get_simplecache_url('js', 'timeago.js');
-	elgg_register_simplecache_view('js/timeago.js');
-	elgg_register_js('jquery.timeago', $js);
-
 	// Register Infinite Scroll Lib
 	$js = elgg_get_simplecache_url('js', 'infinitescroll.js');
 	elgg_register_simplecache_view('js/infinitescroll.js');
@@ -47,8 +42,23 @@ function spiffyactivity_init() {
 
 	elgg_load_js('jquery.isotope');
 	elgg_load_js('jquery.infinitescroll');
-	elgg_load_js('jquery.timeago');
+
+	// Register timeago lib
+	$js = elgg_get_simplecache_url('js', 'timeago.js');
+	elgg_register_simplecache_view('js/timeago.js');
+	elgg_register_js('jquery.timeago', $js);
+	elgg_load_js('jquery.timeago');	
+
 	elgg_load_js('elgg.spiffyactivity');
+
+	// Register labs menu item
+	elgg_register_menu_item('labs', array(
+		'name' => 'spiffyactivity',
+		'href' => elgg_normalize_url('activity?spiffy=1'),
+		'text' => elgg_echo('spiffyactivity:labstitle'),
+		'desc' => elgg_echo('spiffyactivity:labsdesc'),
+	));
+
 
 	if (get_input('page_context') == 'activity' && get_input('spiffy')) {
 		elgg_set_viewtype('spiffy');

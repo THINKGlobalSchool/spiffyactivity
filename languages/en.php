@@ -12,6 +12,8 @@
 
 $english = array(
 	'spiffyactivity:download' => 'Download',
+	'spiffyactivity:labstitle' => 'Spiffy Activity',
+	'spiffyactivity:labsdesc' => 'A fresh (experimental) new look for the activity stream!',
 );
 
 add_translation('en', $english);

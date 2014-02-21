@@ -15,13 +15,13 @@
  */
 
 (function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
-  } else {
-    // Browser globals
+  // if (typeof define === 'function' && define.amd) {
+  //   // AMD. Register as an anonymous module.
+  //   define(['jquery'], factory);
+  // } else {
+  //   // Browser globals
     factory(jQuery);
-  }
+  //}
 }(function ($) {
   $.timeago = function(timestamp) {
     if (timestamp instanceof Date) {
