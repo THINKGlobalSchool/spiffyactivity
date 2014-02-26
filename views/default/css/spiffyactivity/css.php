@@ -62,14 +62,14 @@
 	padding: 5px;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-title {
+.spiffyactivity-item-title {
 	font-size: 1.2em;
 	font-weight: bold;
 	width: 100%;
 	margin-bottom: 3px;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-message {
+.spiffyactivity-item-message {
 	box-shadow: 0 0 4px #DDDDDD inset;
 	color: #555555;
 	font-weight: bold;
@@ -77,23 +77,24 @@
 	padding: 6px 10px 10px;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-item-image img {
+.spiffyactivity-item-image img {
 	width: 100%;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-group-image img {
+.spiffyactivity-group-image img {
 	background-size: 100px 100px !important;
 	height: 100px;
 	width: 100px;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-attachment-url {
+.spiffyactivity-attachment-url {
 	font-style: normal;
 	margin-bottom: 3px;
 	display: block;
 }
 
-.spiffyactivity-list-item .spiffyactivity-list-item-body .spiffyactivity-list-item-horizontal .elgg-image {
+.spiffyactivity-list-item-horizontal .elgg-image,
+.elgg-river-attachments > .spiffyactivity-item-image > img {
 	max-width: 35%;
 	margin: 2px 6px 0 0;
 }
