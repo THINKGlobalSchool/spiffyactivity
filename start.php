@@ -12,15 +12,12 @@
 
 elgg_register_event_handler('init', 'system', 'spiffyactivity_init');
 
-// Init wall posts
+// Init spiffyactivity
 function spiffyactivity_init() {
 
 	// Register library
 	elgg_register_library('elgg:spiffyactivity', elgg_get_plugins_path() . 'spiffyactivity/lib/spiffyactivity.php');
 	elgg_load_library('elgg:spiffyactivity');
-
-	// Register fb link preview library
-	elgg_register_library('facebook-link-preview', elgg_get_plugins_path() . 'spiffyactivity/vendors/fblinkpreview/php/classes/LinkPreview.php');
 
 	// Extend main CSS
 	elgg_extend_view('css/elgg', 'css/spiffyactivity/css');
