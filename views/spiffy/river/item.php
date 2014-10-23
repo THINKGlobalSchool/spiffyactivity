@@ -12,7 +12,13 @@ if (!($item instanceof ElggRiverItem)) {
 	$object->access_id = $item->access_id;
 	$object->posted = $item->time_created;
 	$object->action_type = 'create';
-	$object->view = "river/object/{$item->getSubtype()}/create";
+
+	if ($item->getSubtype() == 'simplekaltura_video') {
+		$object->view = "river/object/simplekaltura/create";
+	} else {
+		$object->view = "river/object/{$item->getSubtype()}/create";
+	}
+
 	$object->type = $item->getType();
 	$object->subtype = $item->getSubtype();
 
@@ -22,6 +28,8 @@ if (!($item instanceof ElggRiverItem)) {
 // checking default viewtype since some viewtypes do not have unique views per item (rss)
 $view = $item->getView();
 if (!$view || !elgg_view_exists($view, 'default')) {
+	echo $view;
+	var_dump(elgg_view_exists($view, 'default'));
 	return '';
 }
 
