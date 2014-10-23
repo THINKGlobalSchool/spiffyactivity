@@ -92,6 +92,9 @@ if ($subtitle !== false) {
 }
 
 $message = elgg_extract('message', $vars, false);
+if (elgg_is_active_plugin('tgsembed')) {
+	$message = tgsembed_filter_generic($message);
+}
 if ($message !== false && !empty($message)) {
 	$message = "<div class=\"spiffyactivity-item-message\">$message</div>";
 }

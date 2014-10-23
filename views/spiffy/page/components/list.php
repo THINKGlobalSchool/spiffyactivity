@@ -17,6 +17,7 @@
  */
 
 $items = $vars['items'];
+
 $offset = elgg_extract('offset', $vars);
 $limit = elgg_extract('limit', $vars);
 $count = elgg_extract('count', $vars);
@@ -41,7 +42,7 @@ if ($count) {
 if (is_array($items) && count($items) > 0) {
 	$html .= "<ul class=\"spiffyactivity-list\">";
 	foreach ($items as $item) {
-		$li = elgg_view_list_item($item, $vars);
+		$li = elgg_view('river/item', array('item' => $item));
 		if ($li) {
 			if (elgg_instanceof($item)) {
 				$id = "elgg-{$item->getType()}-{$item->getGUID()}";
