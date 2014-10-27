@@ -28,8 +28,6 @@ if (!($item instanceof ElggRiverItem)) {
 // checking default viewtype since some viewtypes do not have unique views per item (rss)
 $view = $item->getView();
 if (!$view || !elgg_view_exists($view, 'default')) {
-	echo $view;
-	var_dump(elgg_view_exists($view, 'default'));
 	return '';
 }
 
