@@ -50,6 +50,14 @@ $.Isotope.prototype._masonryResizeChanged = function() {
     return ( this.masonry.cols !== prevSegments );
 };
 
+elgg.spiffyactivity.init = function(hook, type, params, value) {
+    $(document).delegate('ul.spiffyactivity-list a', 'click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.href, '_blank');
+    });
+}
+
 elgg.spiffyactivity.filtrate_init = function(hook, type, params, value) {
     var $container = $('.spiffyactivity-list');
 
@@ -116,7 +124,7 @@ elgg.spiffyactivity.initPlugins = function() {
     $(".elgg-lightbox").fancybox();
 }
 
-//elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);
+elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);
 elgg.register_hook_handler('content_loaded', 'filtrate', elgg.spiffyactivity.filtrate_init);
 elgg.register_hook_handler('infinite_loaded', 'filtrate', elgg.spiffyactivity.filtrate_infinite);
 
