@@ -140,7 +140,7 @@ function spiffyactivity_get_river_item_access_label($item) {
 				$label = 'Private';
 				break;
 			case 1: 
-				$label = 'Logged In Users';
+				$label = elgg_echo('LOGGED_IN');
 				break;
 			case 2:
 				$label = 'Public';
