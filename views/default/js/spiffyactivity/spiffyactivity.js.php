@@ -54,7 +54,9 @@ elgg.spiffyactivity.init = function(hook, type, params, value) {
     $(document).delegate('ul.spiffyactivity-list a', 'click', function(event) {
         event.preventDefault();
         event.stopPropagation();
-        window.open(this.href, '_blank');
+        if (!$(this).hasClass('target-self')) {
+            window.open(this.href, '_blank');
+        }
     });
 }
 

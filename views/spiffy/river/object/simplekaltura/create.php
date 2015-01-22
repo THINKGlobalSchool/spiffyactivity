@@ -21,7 +21,7 @@ $pop_url = elgg_get_site_url() . 'ajax/view/simplekaltura/popup?entity_guid=' . 
 
 $attachment = elgg_view_entity_icon($object, 'large', array(
 		'href' => $pop_url,
-		'link_class' => 'simplekaltura-lightbox',
+		'link_class' => 'simplekaltura-lightbox target-self',
 		'title' => 'simplekaltura_lightbox',
 		'width' => elgg_get_plugin_setting('kaltura_largethumb_width', 'simplekaltura'),
 		'height' => elgg_get_plugin_setting('kaltura_largethumb_height', 'simplekaltura')
