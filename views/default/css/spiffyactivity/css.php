@@ -112,6 +112,33 @@
 }
 
 
+/** Activity Update **/
+a.activity-update-link {
+	display: inline-block;
+	color:white;
+	font-weight: bold;
+	padding:1px 8px 2px 24px;
+	margin-top:9px;
+	cursor: pointer;
+	background: red url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px 3px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	float: right;
+	position: relative;
+	bottom: 5px;
+	right: 15px;
+}
+
+.elgg-widget-content .filtrate-menu-container a.activity-update-link {
+	right: 40px;
+}
+
+a.activity-update-link:hover {
+	color:white;
+	text-decoration: none;
+}
+
 /* River tweaks */
 .elgg-river-item {
 

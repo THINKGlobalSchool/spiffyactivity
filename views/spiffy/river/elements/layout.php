@@ -5,8 +5,8 @@
  * @package SpiffyActivity
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
- * @link http://www.thinkglobalschool.com/
+ * @copyright THINK Global School 2010 - 2015
+ * @link http://www.thinkglobalschool.org/
  *
  * @uses $vars['item']        ElggRiverItem
  * @uses $vars['title']       Optional title (will default to the )
@@ -45,7 +45,7 @@ $owner_link = elgg_view('output/url', array(
 	'text' => $name,
 	'href' => $subject->getURL(),
 ));
-$time = elgg_view_friendly_time($item->getPostedTime());
+$time = elgg_view_friendly_time($item->posted);
 
 $access = spiffyactivity_get_river_item_access_label($item);
 

@@ -2,17 +2,24 @@
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
 	<name>Spiffy Activity</name>
 	<author>Jeff Tilson</author>
-	<version>1.8</version>
+	<id>spiffyactivity</id>
+	<version>1.10</version>
 	<category>enhancement</category>
 	<category>tgs</category>
 	<blurb>Much Spiffier Activity</blurb>
 	<description>Much Spiffier Activity</description>
 	<website>http://www.thinkglobalschool.org/</website>
-	<copyright>THINK Global School 2010 - 2014</copyright>
+	<copyright>THINK Global School 2010 - 2015</copyright>
 	<license>GNU Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>
-		<version>1.8</version>
+		<version>1.10</version>
+	</requires>
+	<requires>
+		<type>plugin</type>
+		<name>tgsutilities</name>
+		<version>1.10</version>
+		<comparison>ge</comparison>
 	</requires>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>

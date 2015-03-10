@@ -51,7 +51,7 @@ $.Isotope.prototype._masonryResizeChanged = function() {
 };
 
 elgg.spiffyactivity.init = function(hook, type, params, value) {
-    $(document).delegate('ul.spiffyactivity-list a', 'click', function(event) {
+    $(document).on('click', 'ul.spiffyactivity-list a', function(event) {
         event.preventDefault();
         event.stopPropagation();
         if (!$(this).hasClass('target-self')) {
@@ -123,7 +123,7 @@ elgg.spiffyactivity.initPlugins = function() {
         elgg.simplekaltura_utility.lightbox_init();
     }
 
-    $(".elgg-lightbox").fancybox();
+    $(".elgg-lightbox").colorbox();
 }
 
 elgg.register_hook_handler('init', 'system', elgg.spiffyactivity.init);
