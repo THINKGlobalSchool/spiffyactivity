@@ -84,7 +84,7 @@ if ($params['tag']) {
 	}
 
 	// Let elgg create our metadata SQL
-	$meta_options = elgg_entities_get_metastrings_options('metadata', $meta);
+	$meta_options = _elgg_entities_get_metastrings_options('metadata', $meta);
 
 	// Add each join
 	foreach ($meta_options['joins'] as $join) {
