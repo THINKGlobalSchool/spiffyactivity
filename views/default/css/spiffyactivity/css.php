@@ -77,7 +77,7 @@
 	padding: 6px 10px 10px;
 }
 
-.spiffyactivity-item-image img {
+.spiffyactivity-list .spiffyactivity-item-image img {
 	width: 100%;
 }
 
