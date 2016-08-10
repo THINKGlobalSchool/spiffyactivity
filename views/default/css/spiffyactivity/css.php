@@ -94,7 +94,7 @@
 }
 
 .spiffyactivity-list-item-horizontal .elgg-image,
-.elgg-river-attachments > .spiffyactivity-item-image > img {
+.elgg-river-attachments > .spiffyactivity-item-image img {
 	max-width: 35%;
 	margin: 2px 6px 0 0;
 }
